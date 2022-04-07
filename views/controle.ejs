@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>BG | Controle de Acesso</title>
+    <link rel="icon" type="image/png" href="./img/camera-fotografica.png"/>
+</head>
+
+<body>
+    <nav class="sub-menu">
+        <article>
+            <img src="./img/book-logo.gif" class="igm-bookdagalera" alt="Nome da logo">
+            <h1>
+                <a href="/">Book Da Galera</a>
+            </h1>
+        </article>
+        <form class="form-inline">
+            <input class="form-control" type="search" placeholder="Pesquisar">
+            <button class="btn" type="submit">Ok</button>
+        </form>
+        <ul>
+            <li>
+                <a href="/">Eventos </a>
+            </li>   
+            <li>
+                <a href="/sobre">Sobre</a>
+            </li>
+            <li>
+                <a href="/controle">Usuário</a>
+            </li>
+        </ul>
+    </nav>
+    
+        <% if(message != "") {  %>
+            <section id="message">
+                <%= message %> <span id="close">&times;</span>
+            </section>
+        <% }  %>
+
+    <form class="acesso" action="/controle" method="POST">
+        <div class="cardAc">
+            <div class="card-top">
+                <img class="imgCadeado" src="./img/cadeado.png" alt="Acesso restrito">
+                <h2>Painel de Controle</h2>
+                <p>Acesso para Membros</p>
+            </div>
+            <div class="card-group">
+                <label>Login</label>
+                <input type="text" name="login" placeholder="Digite seu login" required>
+            </div>
+            <div class="card-group">
+                <label>Senha</label>
+                <input type="password" name="senha" placeholder="Digite sua senha" required>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox"> Lembre-me</label>
+            </div>
+            <div class="card-group">
+                <button class="btnAcessar" type="submit">Acessar</button>
+            </div>
+        </div>
+    </form>
+    
+    
+    <script src="/js/script.js"></script>
+</body>
+</html>

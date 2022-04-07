@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Book da Galera | Membros</title>
+    <link rel="icon" type="image/png" href="./img/camera-fotografica.png"/>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <article>
+                <img src="./img/book-logo.gif" class="igm-bookdagalera" alt="Nome da logo">
+                <h1>
+                    <a href="/">Book Da Galera</a>
+                </h1>
+            </article>
+            <ul>
+                <li>
+                    <h1>
+                        <a>ADMINISTRATIVO</a>
+                    </h1>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+
+                </li>   
+                <li>
+                    <a href="/eventos">Eventos</a> 
+                </li>
+                <li>
+                    <a href="/criar">Cadastrar</a>
+                </li>  
+            </ul>
+        </nav>
+    </header>
+
+    <div class="message_edt_add">
+        <% if(message != "") {  %>
+            <section id="message">
+                <%= message %> <span id="close">&times;</span>
+            </section>
+        <% }  %>
+    </div>
+
+            <div id="OpenCad" class="md">
+                <a href="#CloseCad" title="Fechar" class="CloseCad">x</a>
+                <section id="cadastrar">
+                    <form action="/criar" method="POST">
+                        <div>
+                            <label for="album">Álbum: </label>
+                            <input type="text" name="nome_album" id="album" placeholder="Digite o nome do álbum" required>
+                        </div>
+            
+                        <div>
+                            <label for="nome">Nome: </label>
+                            <input type="text" name="nome_autor" id="nome" placeholder="Digite seu nome" required>
+                        </div>
+                
+                        <div>
+                            <label for="evento">Evento: </label>
+                            <select name="evento_album">
+                                <option value="nenhum">Escolha um álbum</option>
+                                <option value="aniversarios">Aniversários</option>
+                                <option value="baladas">Baladas</option>
+                                <option value="casamentos">Casamentos</option>
+                                <option value="churrascos">Churrascos</option>
+                                <option value="festivais">Festivais</option>
+                                <option value="happyHour">Happy your</option>
+                                <option value="malabares">Malabares</option>
+                                <option value="reveillons">Réveillons</option>
+                            </select>
+                        </div>
+                
+                        <div>
+                            <label for="imagem">Imagem: </label>
+                            <input type="text" name="album_imagem" id="imagem" placeholder="Digite o link da imagem" required>
+                        </div>
+                        <div>
+                            <label for="local">Local: </label>
+                            <input type="text" name="local_album" id="local" placeholder="Digite a localidade" required>
+                        </div>
+    
+                        <div>
+                            <label for="data">Data: </label>
+                            <input type="date" name="data_album" id="data" placeholder="Digite a data" required>
+                        </div>
+                
+                        <button class="btnCadastrar" type="submit">Cadastrar</button>
+                    </form>   
+                </section>   
+            </div></a>
+        </div>
+
+                <table class="table_album">
+                    <div class="nav_card">
+                        <a href="#OpenCad"><h1>Cadastrar</h1></a>
+                    </div> 
+                    <tr>
+                        <td>Id</td>
+                        <td>Album</td>
+                        <td>Autor</td>
+                        <td>Evento</td>
+                        <td>Imagem</td>
+                        <td>Local</td>
+                        <td>Data</td>
+                        <td>Action</td>
+                    </tr>
+        
+                    <% album.forEach((item, criar) => { %>
+                    <tr>
+                        <td><%= item.id_albuns %></td>
+                        <td><%= item.nome_album %></td>
+                        <td><%= item.nome_autor %></td>
+                        <td><%= item.evento_album %></td>
+                        <td><%= item.album_imagem %></td>
+                        <td><%= item.local_album %></td>
+                        <td><%= item.data_album %></td>
+                        <td>
+                            <a href="#edit_modal/<%= item.id_albuns %>"><img src="/img/editar.png"></a>
+                            
+                            <a href="#abrirModal"><img src = "/img/adicionar.png"></a>
+                            <a>   
+                            <div id="abrirModal" class="modal">
+                                    <section id="adicionar">
+                                        <form action="/image" method="POST" enctype="multipart/form-data">
+                                            <div>
+                                                <a href="#fechar" title="Fechar" class="fechar">x</a>
+                                                <label for="album">Upload imagens: </label>
+                                                <input type="file" name="image" id="file"  required>
+                                            </div> 
+                                            <button class="btnCadastrar" type="submit">Upload</button>
+                                        </form> 
+                                    </section>   
+                            </div>
+                            <div id="edit_modal/<%= item.id_albuns %>" class="modal">
+                                <section id="editar">
+                                    <form action="/editar/<%= item.id_albuns %>" method="POST">
+                                                <div>
+                                                    <a href="#fechar_edit" title="Fechar" class="fechar_edit">x</a>
+                                                    <label for="album">Álbum: </label>
+                                                    <input type="text" name="nome_album" id="album" placeholder="Digite o nome do álbum" value= '<%= item.nome_album %>'required>
+                                                </div>
+                                    
+                                                <div>
+                                                    <label for="nome">Nome: </label>
+                                                    <input type="text" name="nome_autor" id="nome" placeholder="Digite seu nome" value= '<%= item.nome_autor%>' required>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label for="evento">Evento: </label>
+                                                    <select name="evento_album">
+                                                        <option value="nenhum">Escolha um álbum</option>
+                                                        <option value="aniversarios">Aniversários</option>
+                                                        <option value="baladas">Baladas</option>
+                                                        <option value="casamentos">Casamentos</option>
+                                                        <option value="churrascos">Churrascos</option>
+                                                        <option value="festivais">Festivais</option>
+                                                        <option value="happyHour">Happy your</option>
+                                                        <option value="malabares">Malabares</option>
+                                                        <option value="reveillons">Réveillons</option>
+                                                    </select>
+                                                </div>
+                                        
+                                                <div>
+                                                    <label for="imagem">Imagem: </label>
+                                                    <input type="text" name="album_imagem" id="imagem" placeholder="Digite o link da imagem" value= '<%= item.album_imagem %>' required>
+                                                </div>
+                                                <div>
+                                                    <label for="local">Local: </label>
+                                                    <input type="text" name="local_album" id="local" placeholder="Digite a localidade" value= '<%= item.local_album %>' required>
+                                                </div>
+                            
+                                                <div>
+                                                    <label for="data">Data: </label>
+                                                    <input type="date" name="data_album" id="data" placeholder="Digite a data" value= '<%= item.data_album %>' required>
+                                                </div>
+                                            <div >    
+                                                <button class="btnCadastrar" type="submit"><span class="editar_btn">Editar</span></button>
+                                            </div>    
+                                            </form>
+                                       <section> 
+                            </div>
+                            </a>
+                            <a href="#sn/<%= item.id_albuns %>"><img src = "/img/lixeira.png"></a>
+
+                            <div id="sn/<%= item.id_albuns %>" class="del">
+                                <section id="delete">
+                                    <h1>
+                                        Tem certeza que deseja Excluir!?
+                                    </h1>
+                                        <form action="/criar">
+                                        <button class="btn_cancelar" type="submit">Cancelar</button>
+                                        </form>
+                                        <form action="/deletar/<%= item.id_albuns %>">
+                                        <button class="btn_excluir" type="submit">Excluir</button>
+                                        </form>
+                                </section>      
+                            </div>
+                        </td>
+                    </tr>
+                    <% }) %>
+                    
+                </table>     
+        </section>  
+        <a>
+        <script src="/js/script.js"></script>
+</body>
+</html>
+

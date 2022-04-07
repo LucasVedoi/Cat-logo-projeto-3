@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>BG | Eventos</title>
+    <link rel="icon" type="image/png" href="./img/camera-fotografica.png"/>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <article>
+                <img src="./img/book-logo.gif" class="igm-bookdagalera" alt="Nome da logo">
+                <h1>
+                    <a href="/">Book Da Galera</a>
+                </h1>
+            </article>
+            <form class="form-inline">
+                <input class="form-control" type="search" placeholder="Pesquisar">
+                <button class="btn" type="submit">Ok</button>
+            </form>
+            <ul>
+                <li>
+                    <a href="/eventos">Eventos</a>  
+                <li>
+                    <a href="/sobre">Sobre</a>
+                </li>
+                <li>
+                    <a href="/controle">Usuário</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="eventos_all">  
+        <img class="img_eventos"src='./img/11.png'>
+
+        <section class="card">
+            <% eventos_img.forEach((item, eventos) => { %>
+                <a class= "card" href="/albuns/<%= item.id_eventos %>">
+                <img src='<%= item.local_imagem %>'>
+            <% }) %>
+                </a>
+        </section>
+    </div>
+    <script src="/js/script.js"></script>
+</body>
+</html>
+
